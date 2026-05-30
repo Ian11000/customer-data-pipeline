@@ -1,9 +1,11 @@
 # Roadmap - customer-data-pipeline
 
-## Phase 1: Foundation ✅ (In Progress)
+## Phase 1: Foundation
 - [x] Configuration system using Pydantic + YAML
-- [ ] Core cleaning functions
-- [ ] Basic pipeline runner
+- [x] Basic cleaning transformation functions
+- [x] Cleaning engine that consumes config
+- [ ] Core pipeline runner (orchestration)
+- [ ] Unit tests for cleaning functions
 
 ## Phase 2: Enrichment
 - Reference data joins
