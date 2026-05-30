@@ -1,0 +1,9 @@
+customer_id,full_name,email,phone_number,city,signup_date,segment
+1,  John Doe ,JOHN.DOE@GMAIL.COM, +1 (555) 123-4567, New York ,2024-01-15,premium
+2,jane smith,jane.smith@yahoo.com,555.987.6543,  Los Angeles,2024-02-20,standard
+3,  Robert Johnson ,robert.johnson@outlook.com,,Chicago,2024-03-10,premium
+4,EMILY DAVIS,EMILY.DAVIS@GMAIL.COM,(555) 222-3333,  New York,2024-01-05,standard
+5,  michael brown ,michael.brown@hotmail.com,555-444-5555,  ,2024-04-12,premium
+6,jane smith,jane.smith@yahoo.com,555.987.6543,Los Angeles,2024-02-20,standard
+7,SARAH WILSON,sarah.wilson@gmail.com,,Boston,2024-05-01,standard
+8,  David Lee ,david.lee@company.com,+1-555-777-8888,  Chicago ,2024-03-25,premium

@@ -1,11 +1,41 @@
-# Development overrides
+# Development configuration with sample data
 
 pipeline:
+  name: customer-cleaning-pipeline
+  version: "0.1.0"
   environment: dev
 
 data_sources:
   customers:
+    type: csv
     path: data/raw/sample_customers.csv
+    delimiter: ","
+
+reference_data:
+  - name: customer_segments
+    path: data/reference/customer_segments.csv
+    type: csv
+
+cleaning:
+  enabled: true
+  rules:
+    - column: full_name
+      transformations:
+        - strip_whitespace
+    - column: email
+      transformations:
+        - standardize_email
+    - column: phone_number
+      transformations:
+        - remove_non_digits
+    - column: city
+      transformations:
+        - strip_whitespace
+        - lower_case
+
+enrichment:
+  enabled: false
 
 output:
-  path: data/processed/dev_customers_clean.parquet
+  format: parquet
+  path: data/processed/sample_customers_cleaned.parquet
