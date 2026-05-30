@@ -5,62 +5,63 @@
 ### Current Status
 
 - Configuration system (Pydantic + YAML) — **Completed**
-- Core cleaning modules — In progress
+- Core cleaning transformations + reporting — **Completed**
+- **Core Pipeline Runner / Orchestration** — **Completed**
 
 ### Overview
-This project is a modular, production-style data pipeline for cleaning and enriching customer-related datasets. It is designed to demonstrate real-world data engineering skills including data quality management, enrichment strategies, and scalable pipeline design.
+This project demonstrates a modular, production-style data pipeline for cleaning and enriching customer-related datasets.
 
-### Key Features (Planned)
-- Config-driven pipeline
-- Multiple data source support (CSV, Excel, JSON, Database)
-- Comprehensive data cleaning (standardization, deduplication, missing value handling)
-- Data enrichment via reference data and external APIs
-- Data quality scoring and reporting
-- Full audit logging and lineage
-- Output to Parquet, CSV, and databases
+### Key Features (Implemented so far)
+- YAML + Pydantic configuration system
+- Configurable cleaning rules with rich transformations
+- Change tracking and detailed cleaning reports
+- Support for both column-level and DataFrame-level operations (e.g. deduplication)
+- Clean orchestration layer (`Pipeline` class)
 
 ### Tech Stack
 - Python 3.11+
 - Pandas / Polars
-- Pydantic for configuration
-- Logging + structured logs
-- Optional: FastAPI for pipeline triggering
+- Pydantic v2
+- Loguru
+
+### Quick Start
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run using the new Pipeline runner (recommended)
+python examples/run_with_pipeline.py
+
+# Or run the older direct example
+python examples/run_cleaning_example.py
+```
 
 ### Project Structure
 ```
 customer-data-pipeline/
-├── README.md
-├── requirements.txt
-├── .gitignore
 ├── src/
-│   ├── config/          # Configuration system (Pydantic + YAML)
-│   ├── cleaning/
-│   ├── enrichment/
-│   ├── pipeline/
+│   ├── config/          # Configuration system
+│   ├── cleaning/        # Cleaning transformations + engine
+│   ├── pipeline/        # Main orchestration layer
 │   └── utils/
-├── config/            # Example YAML configurations
+├── config/              # YAML configuration files
 ├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── reference/
-├── docs/
-└── tests/
+├── examples/
+├── tests/
+└── docs/
 ```
 
-### Getting Started (Configuration)
+### Running the Pipeline
+
+The recommended way is using the orchestration layer:
 
 ```bash
-pip install -r requirements.txt
-
-# Load configuration
-python -c "from src.config import load_config; print(load_config('config/base.yaml'))"
+python examples/run_with_pipeline.py
 ```
 
 ### Roadmap
-- Phase 1: Configuration system using Pydantic + YAML → **Done**
-- Phase 2: Core cleaning functions
-- Phase 3: Enrichment layer
-- Phase 4: Full pipeline orchestration + quality reporting
+See [docs/ROADMAP.md](docs/ROADMAP.md) for detailed next steps.
 
 ### Domain Focus
 **Customer Data** (CRM, marketing, support, sales touchpoints)

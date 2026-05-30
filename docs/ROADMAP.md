@@ -6,7 +6,9 @@
 - [x] Cleaning engine with change tracking + summary reports
 - [x] Support for DataFrame-level operations (e.g. remove_duplicates)
 - [x] Unit tests for cleaning transformations
-- [ ] Core pipeline runner (orchestration)
+- [x] Core pipeline runner / orchestration layer
+- [ ] Add CLI entry point (e.g. `python -m src.pipeline`)
+- [ ] Improve logging and observability
 
 ## Phase 2: Enrichment
 - Reference data joins
