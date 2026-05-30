@@ -37,6 +37,50 @@ def standardize_email(series: pd.Series, **kwargs) -> pd.Series:
     return series.astype(str).str.lower().str.strip()
 
 
+def standardize_date(
+    series: pd.Series, 
+    format: str = "auto",
+    errors: str = "coerce",
+    **kwargs
+) -> pd.Series:
+    """
+    Convert column to datetime.
+    
+    Args:
+        format: 'auto' to let pandas infer, or specific strftime format.
+        errors: 'coerce', 'raise', or 'ignore'
+    """
+    if format == "auto":
+        return pd.to_datetime(series, errors=errors)
+    else:
+        return pd.to_datetime(series, format=format, errors=errors)
+
+
+def clip_outliers(
+    series: pd.Series, 
+    method: str = "iqr",
+    factor: float = 1.5,
+    **kwargs
+) -> pd.Series:
+    """
+    Clip outliers using IQR method.
+    
+    Args:
+        method: Currently only 'iqr' supported
+        factor: IQR multiplier (default 1.5)
+    """
+    if not pd.api.types.is_numeric_dtype(series):
+        return series
+    
+    q1 = series.quantile(0.25)
+    q3 = series.quantile(0.75)
+    iqr = q3 - q1
+    lower = q1 - factor * iqr
+    upper = q3 + factor * iqr
+    
+    return series.clip(lower=lower, upper=upper)
+
+
 def handle_missing_values(
     series: pd.Series, 
     strategy: str = "fill", 
@@ -47,11 +91,9 @@ def handle_missing_values(
     Handle missing values.
     
     Strategies:
-        - 'fill': fill with fill_value (default None)
-        - 'drop': drop rows with missing values (returns filtered series)
-        - 'mean': fill numeric with mean
-        - 'median': fill numeric with median
-        - 'mode': fill with mode
+        - 'fill': fill with fill_value
+        - 'drop': drop rows (note: affects whole DataFrame when used in engine)
+        - 'mean', 'median', 'mode'
     """
     if strategy == "drop":
         return series.dropna()
@@ -67,17 +109,16 @@ def handle_missing_values(
         if not mode_val.empty:
             return series.fillna(mode_val[0])
     
-    # Default fill
     return series.fillna(fill_value)
 
 
 def remove_duplicates(df: pd.DataFrame, subset: list[str] | None = None, **kwargs) -> pd.DataFrame:
-    """Remove duplicate rows. Operates on DataFrame level."""
+    """Remove duplicate rows. This is a DataFrame-level operation."""
     return df.drop_duplicates(subset=subset, keep="first")
 
 
 def get_transformation_function(name: str):
-    """Registry to get transformation function by name."""
+    """Registry of available transformations."""
     registry = {
         "lower_case": lower_case,
         "upper_case": upper_case,
@@ -85,6 +126,8 @@ def get_transformation_function(name: str):
         "remove_non_digits": remove_non_digits,
         "remove_special_chars": remove_special_chars,
         "standardize_email": standardize_email,
+        "standardize_date": standardize_date,
+        "clip_outliers": clip_outliers,
         "handle_missing_values": handle_missing_values,
     }
     

@@ -3,9 +3,10 @@
 ## Phase 1: Foundation
 - [x] Configuration system using Pydantic + YAML
 - [x] Basic cleaning transformation functions
-- [x] Cleaning engine that consumes config
+- [x] Cleaning engine with change tracking + summary reports
 - [ ] Core pipeline runner (orchestration)
 - [ ] Unit tests for cleaning functions
+- [ ] Support for DataFrame-level operations in config
 
 ## Phase 2: Enrichment
 - Reference data joins
