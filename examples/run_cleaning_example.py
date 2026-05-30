@@ -34,7 +34,6 @@ def main():
     print(df.to_string())
     print(f"\nShape: {df.shape}")
 
-    # Now returns both cleaned data and report
     logger.info("Applying cleaning rules from configuration...")
     cleaned_df, report = apply_cleaning_rules(df, config.cleaning)
 

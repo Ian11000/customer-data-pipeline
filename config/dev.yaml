@@ -32,6 +32,11 @@ cleaning:
       transformations:
         - strip_whitespace
         - lower_case
+    - column: _df_
+      transformations:
+        - remove_duplicates
+      parameters:
+        subset: ["email"]   # Remove duplicate emails
 
 enrichment:
   enabled: false

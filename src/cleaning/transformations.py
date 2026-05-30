@@ -6,6 +6,9 @@ from typing import Any
 import pandas as pd
 import numpy as np
 
+# Transformations that operate on the entire DataFrame instead of a single column
+DATAFRAME_LEVEL_TRANSFORMATIONS = {"remove_duplicates"}
+
 
 def lower_case(series: pd.Series, **kwargs) -> pd.Series:
     """Convert text to lowercase."""
@@ -117,6 +120,11 @@ def remove_duplicates(df: pd.DataFrame, subset: list[str] | None = None, **kwarg
     return df.drop_duplicates(subset=subset, keep="first")
 
 
+def is_dataframe_level_transformation(name: str) -> bool:
+    """Check if a transformation operates on the whole DataFrame."""
+    return name in DATAFRAME_LEVEL_TRANSFORMATIONS
+
+
 def get_transformation_function(name: str):
     """Registry of available transformations."""
     registry = {
@@ -129,6 +137,7 @@ def get_transformation_function(name: str):
         "standardize_date": standardize_date,
         "clip_outliers": clip_outliers,
         "handle_missing_values": handle_missing_values,
+        "remove_duplicates": remove_duplicates,
     }
     
     if name not in registry:

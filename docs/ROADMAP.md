@@ -4,9 +4,9 @@
 - [x] Configuration system using Pydantic + YAML
 - [x] Basic cleaning transformation functions
 - [x] Cleaning engine with change tracking + summary reports
+- [x] Support for DataFrame-level operations (e.g. remove_duplicates)
+- [x] Unit tests for cleaning transformations
 - [ ] Core pipeline runner (orchestration)
-- [ ] Unit tests for cleaning functions
-- [ ] Support for DataFrame-level operations in config
 
 ## Phase 2: Enrichment
 - Reference data joins
