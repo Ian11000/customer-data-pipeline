@@ -2,6 +2,11 @@
 
 **Advanced Python Data Cleaning & Enrichment Pipeline** focused on Customer data.
 
+### Current Status
+
+- Configuration system (Pydantic + YAML) — **Completed**
+- Core cleaning modules — In progress
+
 ### Overview
 This project is a modular, production-style data pipeline for cleaning and enriching customer-related datasets. It is designed to demonstrate real-world data engineering skills including data quality management, enrichment strategies, and scalable pipeline design.
 
@@ -28,25 +33,34 @@ customer-data-pipeline/
 ├── requirements.txt
 ├── .gitignore
 ├── src/
-│   ├── config/
+│   ├── config/          # Configuration system (Pydantic + YAML)
 │   ├── cleaning/
 │   ├── enrichment/
 │   ├── pipeline/
 │   └── utils/
+├── config/            # Example YAML configurations
 ├── data/
 │   ├── raw/
 │   ├── processed/
 │   └── reference/
 ├── docs/
-├── tests/
-└── notebooks/
+└── tests/
+```
+
+### Getting Started (Configuration)
+
+```bash
+pip install -r requirements.txt
+
+# Load configuration
+python -c "from src.config import load_config; print(load_config('config/base.yaml'))"
 ```
 
 ### Roadmap
-- Phase 1: Core cleaning modules + configuration system
-- Phase 2: Enrichment layer + reference data handling
-- Phase 3: Full pipeline orchestration + quality reporting
-- Phase 4: Docker support + scheduling
+- Phase 1: Configuration system using Pydantic + YAML → **Done**
+- Phase 2: Core cleaning functions
+- Phase 3: Enrichment layer
+- Phase 4: Full pipeline orchestration + quality reporting
 
 ### Domain Focus
 **Customer Data** (CRM, marketing, support, sales touchpoints)
