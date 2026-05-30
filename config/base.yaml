@@ -1,0 +1,35 @@
+# Base configuration for Customer Data Pipeline
+
+pipeline:
+  name: customer-cleaning-pipeline
+  version: "0.1.0"
+  environment: dev
+
+data_sources:
+  customers:
+    type: csv
+    path: data/raw/customers.csv
+    delimiter: ","
+
+reference_data:
+  - name: customer_segments
+    path: data/reference/customer_segments.csv
+    type: csv
+
+cleaning:
+  enabled: true
+  rules:
+    - column: email
+      transformations:
+        - lower_case
+        - strip_whitespace
+    - column: phone_number
+      transformations:
+        - remove_non_digits
+
+enrichment:
+  enabled: false   # Will be enabled in later phases
+
+output:
+  format: parquet
+  path: data/processed/customers_clean.parquet

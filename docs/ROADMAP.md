@@ -1,8 +1,9 @@
 # Roadmap - customer-data-pipeline
 
-## Phase 1: Foundation
-- Configuration system using Pydantic + YAML
-- Basic cleaning functions (missing values, duplicates, standardization)
+## Phase 1: Foundation ✅ (In Progress)
+- [x] Configuration system using Pydantic + YAML
+- [ ] Core cleaning functions
+- [ ] Basic pipeline runner
 
 ## Phase 2: Enrichment
 - Reference data joins
@@ -16,5 +17,5 @@
 
 ## Phase 4: Production Readiness
 - Docker support
-- Scheduling (Airflow / Prefect / cron)
+- Scheduling
 - Monitoring and alerting

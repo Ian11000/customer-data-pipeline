@@ -1,0 +1,11 @@
+# Development overrides
+
+pipeline:
+  environment: dev
+
+data_sources:
+  customers:
+    path: data/raw/sample_customers.csv
+
+output:
+  path: data/processed/dev_customers_clean.parquet
